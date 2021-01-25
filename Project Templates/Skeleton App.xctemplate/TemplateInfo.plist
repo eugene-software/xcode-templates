@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Kind</key>
+	<string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
+	<key>Identifier</key>
+	<string>io.idevs.dt.unit.SKELETON</string>
+	<key>Ancestors</key>
+	<array>
+		<string>io.idevs.dt.unit.cocoaTouchApplicationBase</string>
+		<string>com.apple.dt.unit.languageChoice</string>
+	</array>
+	<key>Concrete</key>
+	<true/>
+	<key>Description</key>
+	<string>This template provides a starting point for an application that uses a &quot;VIPER&quot; Architecture.</string>
+	<key>SortOrder</key>
+	<integer>1</integer>
+	<key>Definitions</key>
+	<dict>
+		<key>Core/Networking/CustomJSONCoding.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Networking</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Networking/CustomJSONCoding.swift</string>
+		</dict>
+		<key>Core/Networking/SwiftyBeaver+ext.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Networking</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Networking/SwiftyBeaver+ext.swift</string>
+		</dict>
+		<key>Core/Networking/NetworkApiManager.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Networking</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Networking/NetworkApiManager.swift</string>
+		</dict>
+		<key>Core/Networking/HTTPStatusCode.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Networking</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Networking/HTTPStatusCode.swift</string>
+		</dict>
+		<key>Core/Networking/NetworkApiError.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Networking</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Networking/NetworkApiError.swift</string>
+		</dict>
+		<key>Core/Networking/Moya Extensions/MoyaProvider+Plugins.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Networking</string>
+				<string>Moya Extensions</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Networking/Moya Extensions/MoyaProvider+Plugins.swift</string>
+		</dict>
+		<key>Core/Networking/Moya Extensions/TargetType+Custom.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Networking</string>
+				<string>Moya Extensions</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Networking/Moya Extensions/TargetType+Custom.swift</string>
+		</dict>
+		<key>Core/Networking/Moya Extensions/MoyaPlugins.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Networking</string>
+				<string>Moya Extensions</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Networking/Moya Extensions/MoyaPlugins.swift</string>
+		</dict>
+		<key>Core/Networking/Moya Extensions/NotModifiedPlugin.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Networking</string>
+				<string>Moya Extensions</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Networking/Moya Extensions/NotModifiedPlugin.swift</string>
+		</dict>
+		<key>Core/Networking/Moya Extensions/MoyaError+Crashlytics.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Networking</string>
+				<string>Moya Extensions</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Networking/Moya Extensions/MoyaError+Crashlytics.swift</string>
+		</dict>
+		<key>Core/Networking/Moya Extensions/Moya+PromiseKit.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Networking</string>
+				<string>Moya Extensions</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Networking/Moya Extensions/Moya+PromiseKit.swift</string>
+		</dict>
+		<key>Core/Storage/AppDatabaseImporter.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Storage</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Storage/AppDatabaseImporter.swift</string>
+		</dict>
+		<key>Core/Storage/AppDatabase.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Storage</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Storage/AppDatabase.swift</string>
+		</dict>
+		<key>Core/Storage/AppDatabaseExporter.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Storage</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Storage/AppDatabaseExporter.swift</string>
+		</dict>
+		<key>Core/Storage/CoreDataManagement/DataStorageProtocol.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Storage</string>
+				<string>CoreDataManagement</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Storage/CoreDataManagement/DataStorageProtocol.swift</string>
+		</dict>
+		<key>Core/Storage/CoreDataManagement/AppDatabase+CoreData/AppDatabaseExporter+CoreData.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Storage</string>
+				<string>CoreDataManagement</string>
+				<string>AppDatabase+CoreData</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Storage/CoreDataManagement/AppDatabase+CoreData/AppDatabaseExporter+CoreData.swift</string>
+		</dict>
+		<key>Core/Storage/CoreDataManagement/AppDatabase+CoreData/AppDatabaseImporter+CoreData.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Storage</string>
+				<string>CoreDataManagement</string>
+				<string>AppDatabase+CoreData</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Storage/CoreDataManagement/AppDatabase+CoreData/AppDatabaseImporter+CoreData.swift</string>
+		</dict>
+		<key>Core/Storage/CoreDataManagement/CoreDataStorage/CoreDataStorageController.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Storage</string>
+				<string>CoreDataManagement</string>
+				<string>CoreDataStorage</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Storage/CoreDataManagement/CoreDataStorage/CoreDataStorageController.swift</string>
+		</dict>
+		<key>Core/Storage/CoreDataManagement/CoreDataStorage/LocalStorageDataModel.xcdatamodeld</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Core</string>
+				<string>Storage</string>
+				<string>CoreDataManagement</string>
+				<string>CoreDataStorage</string>
+			</array>
+			<key>Path</key>
+			<string>Core/Storage/CoreDataManagement/CoreDataStorage/LocalStorageDataModel.xcdatamodeld</string>
+		</dict>
+		<key>AppBehaviors/Behaviors/AppDatabaseBehavior.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Behaviors</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Behaviors/AppDatabaseBehavior.swift</string>
+		</dict>
+		<key>Services/ServiceLocator/Implementation/Services.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>ServiceLocator</string>
+				<string>Implementation</string>
+			</array>
+			<key>Path</key>
+			<string>Services/ServiceLocator/Implementation/Services.swift</string>
+		</dict>
+		<key>Services/User Service/UserServiceProtocol.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>User Service</string>
+			</array>
+			<key>Path</key>
+			<string>Services/User Service/UserServiceProtocol.swift</string>
+		</dict>
+		<key>Services/User Service/UserService.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>User Service</string>
+			</array>
+			<key>Path</key>
+			<string>Services/User Service/UserService.swift</string>
+		</dict>
+		<key>Services/User Service/Networking/NetworkApiManager+User.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>User Service</string>
+				<string>Networking</string>
+			</array>
+			<key>Path</key>
+			<string>Services/User Service/Networking/NetworkApiManager+User.swift</string>
+		</dict>
+		<key>Services/User Service/Networking/UsersPaths.plist</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>User Service</string>
+				<string>Networking</string>
+			</array>
+			<key>Path</key>
+			<string>Services/User Service/Networking/UsersPaths.plist</string>
+		</dict>
+		<key>Services/User Service/Networking/NetworkUsersApi.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>User Service</string>
+				<string>Networking</string>
+			</array>
+			<key>Path</key>
+			<string>Services/User Service/Networking/NetworkUsersApi.swift</string>
+		</dict>
+		<key>Services/User Service/Storage/DTOs/User.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>User Service</string>
+				<string>Storage</string>
+				<string>DTOs</string>
+			</array>
+			<key>Path</key>
+			<string>Services/User Service/Storage/DTOs/User.swift</string>
+		</dict>
+		<key>Services/User Service/Storage/DTOs+CoreData/User+CoreData.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>User Service</string>
+				<string>Storage</string>
+				<string>DTOs+CoreData</string>
+			</array>
+			<key>Path</key>
+			<string>Services/User Service/Storage/DTOs+CoreData/User+CoreData.swift</string>
+		</dict>
+		<key>Services/User Service/Storage/ManagedObjects/ManagedUser+CoreDataProperties.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>User Service</string>
+				<string>Storage</string>
+				<string>ManagedObjects</string>
+			</array>
+			<key>Path</key>
+			<string>Services/User Service/Storage/ManagedObjects/ManagedUser+CoreDataProperties.swift</string>
+		</dict>
+		<key>Services/User Service/Storage/ManagedObjects/ManagedUser+CoreDataClass.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>User Service</string>
+				<string>Storage</string>
+				<string>ManagedObjects</string>
+			</array>
+			<key>Path</key>
+			<string>Services/User Service/Storage/ManagedObjects/ManagedUser+CoreDataClass.swift</string>
+		</dict>
+		<key>Services/Reachability Service/ReachabilityService.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>Reachability Service</string>
+			</array>
+			<key>Path</key>
+			<string>Services/Reachability Service/ReachabilityService.swift</string>
+		</dict>
+		<key>Services/Reachability Service/ReachabilityServiceProtocol.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>Reachability Service</string>
+			</array>
+			<key>Path</key>
+			<string>Services/Reachability Service/ReachabilityServiceProtocol.swift</string>
+		</dict>
+		<key>Services/Account Service/AccountService.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>Account Service</string>
+			</array>
+			<key>Path</key>
+			<string>Services/Account Service/AccountService.swift</string>
+		</dict>
+		<key>Services/Account Service/AccountServiceProtocol.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>Account Service</string>
+			</array>
+			<key>Path</key>
+			<string>Services/Account Service/AccountServiceProtocol.swift</string>
+		</dict>
+		<key>Services/Account Service/Networking/NetworkApiManager+Authentication.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>Account Service</string>
+				<string>Networking</string>
+			</array>
+			<key>Path</key>
+			<string>Services/Account Service/Networking/NetworkApiManager+Authentication.swift</string>
+		</dict>
+		<key>Services/Account Service/Networking/EverclearAuthApi.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>Account Service</string>
+				<string>Networking</string>
+			</array>
+			<key>Path</key>
+			<string>Services/Account Service/Networking/EverclearAuthApi.swift</string>
+		</dict>
+		<key>Services/Account Service/Networking/AuthPaths.plist</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Services</string>
+				<string>Account Service</string>
+				<string>Networking</string>
+			</array>
+			<key>Path</key>
+			<string>Services/Account Service/Networking/AuthPaths.plist</string>
+		</dict>
+		<key>Categories/UIKit/UIView+IBInspectable.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Categories</string>
+				<string>UIKit</string>
+			</array>
+			<key>Path</key>
+			<string>Categories/UIKit/UIView+IBInspectable.swift</string>
+		</dict>
+		<key>Categories/Foundation/NSPointerArray+utils.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Categories</string>
+				<string>Foundation</string>
+			</array>
+			<key>Path</key>
+			<string>Categories/Foundation/NSPointerArray+utils.swift</string>
+		</dict>
+		<key>Categories/Foundation/Any+Operators.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Categories</string>
+				<string>Foundation</string>
+			</array>
+			<key>Path</key>
+			<string>Categories/Foundation/Any+Operators.swift</string>
+		</dict>
+		<key>Categories/Foundation/NSPredicate+CoreData.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Categories</string>
+				<string>Foundation</string>
+			</array>
+			<key>Path</key>
+			<string>Categories/Foundation/NSPredicate+CoreData.swift</string>
+		</dict>
+		<key>Categories/Foundation/Encodable+Dictionary.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Categories</string>
+				<string>Foundation</string>
+			</array>
+			<key>Path</key>
+			<string>Categories/Foundation/Encodable+Dictionary.swift</string>
+		</dict>
+		<key>AppBehaviors/Behaviors/AppFlowController.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Behaviors</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Behaviors/AppFlowController.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+AppExtension.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+AppExtension.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+AppStateChanges.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+AppStateChanges.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+AppStateRestoration.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+AppStateRestoration.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+CloudKit.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+CloudKit.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+Continuity.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+Continuity.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+DataInBackground.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+DataInBackground.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+HealthKit.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+HealthKit.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+Interface.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+Interface.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+QuickAction.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+QuickAction.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+RemoteNotification.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+RemoteNotification.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+SystemEvents.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+SystemEvents.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+URL.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+URL.swift</string>
+		</dict>
+		<key>AppBehaviors/Dispatchers/AppBehaviorDispatcher+WatchKit.swift</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>AppBehaviors</string>
+				<string>Dispatchers</string>
+			</array>
+			<key>Path</key>
+			<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+WatchKit.swift</string>
+		</dict>
+		<key>../Podfile</key>
+		<dict>
+			<key>Path</key>
+			<string>Podfile</string>
+		</dict>
+		<key>AppDelegate.swift</key>
+		<dict>
+			<key>Path</key>
+			<string>AppDelegate.swift</string>
+		</dict>
+	</dict>
+	<key>Options</key>
+	<array>
+		<dict>
+			<key>Identifier</key>
+			<string>languageChoice</string>
+			<key>Override</key>
+			<string>Swift</string>
+			<key>Units</key>
+			<dict>
+				<key>Swift</key>
+				<dict>
+					<key>Nodes</key>
+					<array>
+						<string>Core/Networking/CustomJSONCoding.swift</string>
+						<string>Core/Networking/SwiftyBeaver+ext.swift</string>
+						<string>Core/Networking/NetworkApiManager.swift</string>
+						<string>Core/Networking/HTTPStatusCode.swift</string>
+						<string>Core/Networking/NetworkApiError.swift</string>
+						<string>Core/Networking/Moya Extensions/MoyaProvider+Plugins.swift</string>
+						<string>Core/Networking/Moya Extensions/TargetType+Custom.swift</string>
+						<string>Core/Networking/Moya Extensions/MoyaPlugins.swift</string>
+						<string>Core/Networking/Moya Extensions/NotModifiedPlugin.swift</string>
+						<string>Core/Networking/Moya Extensions/MoyaError+Crashlytics.swift</string>
+						<string>Core/Networking/Moya Extensions/Moya+PromiseKit.swift</string>
+						<string>Core/Storage/AppDatabaseImporter.swift</string>
+						<string>Core/Storage/AppDatabase.swift</string>
+						<string>Core/Storage/AppDatabaseExporter.swift</string>
+						<string>Core/Storage/CoreDataManagement/DataStorageProtocol.swift</string>
+						<string>Core/Storage/CoreDataManagement/AppDatabase+CoreData/AppDatabaseExporter+CoreData.swift</string>
+						<string>Core/Storage/CoreDataManagement/AppDatabase+CoreData/AppDatabaseImporter+CoreData.swift</string>
+						<string>Core/Storage/CoreDataManagement/CoreDataStorage/CoreDataStorageController.swift</string>
+						<string>Core/Storage/CoreDataManagement/CoreDataStorage/LocalStorageDataModel.xcdatamodeld</string>
+						<string>AppBehaviors/Behaviors/AppDatabaseBehavior.swift</string>
+						<string>Services/ServiceLocator/Implementation/Services.swift</string>
+						<string>Services/User Service/UserServiceProtocol.swift</string>
+						<string>Services/User Service/UserService.swift</string>
+						<string>Services/User Service/Networking/NetworkApiManager+User.swift</string>
+						<string>Services/User Service/Networking/UsersPaths.plist</string>
+						<string>Services/User Service/Networking/NetworkUsersApi.swift</string>
+						<string>Services/User Service/Storage/DTOs/User.swift</string>
+						<string>Services/User Service/Storage/DTOs+CoreData/User+CoreData.swift</string>
+						<string>Services/User Service/Storage/ManagedObjects/ManagedUser+CoreDataProperties.swift</string>
+						<string>Services/User Service/Storage/ManagedObjects/ManagedUser+CoreDataClass.swift</string>
+						<string>Services/Reachability Service/ReachabilityService.swift</string>
+						<string>Services/Reachability Service/ReachabilityServiceProtocol.swift</string>
+						<string>Services/Account Service/AccountService.swift</string>
+						<string>Services/Account Service/AccountServiceProtocol.swift</string>
+						<string>Services/Account Service/Networking/NetworkApiManager+Authentication.swift</string>
+						<string>Services/Account Service/Networking/EverclearAuthApi.swift</string>
+						<string>Services/Account Service/Networking/AuthPaths.plist</string>
+						<string>Categories/UIKit/UIView+IBInspectable.swift</string>
+						<string>Categories/Foundation/NSPointerArray+utils.swift</string>
+						<string>Categories/Foundation/Any+Operators.swift</string>
+						<string>Categories/Foundation/NSPredicate+CoreData.swift</string>
+						<string>Categories/Foundation/Encodable+Dictionary.swift</string>
+						<string>AppBehaviors/Behaviors/AppFlowController.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+AppExtension.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+AppStateChanges.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+AppStateRestoration.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+CloudKit.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+Continuity.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+DataInBackground.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+HealthKit.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+Interface.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+QuickAction.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+RemoteNotification.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+SystemEvents.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+URL.swift</string>
+						<string>AppBehaviors/Dispatchers/AppBehaviorDispatcher+WatchKit.swift</string>
+						<string>../Podfile</string>
+						<string>AppDelegate.swift</string>
+					</array>
+				</dict>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

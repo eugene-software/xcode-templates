@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20B29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedAdvisor" representedClassName="ManagedAdvisor" syncable="YES">
+        <attribute name="bannerDismissed" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="biography" optional="YES" attributeType="String"/>
+        <attribute name="blocked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="canReviewState" optional="YES" attributeType="String"/>
+        <attribute name="canTip" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="chatAvailability" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="closed" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="gender" attributeType="String" defaultValueString="M"/>
+        <attribute name="iconPath" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isVideoCallingAvailable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastCallId" optional="YES" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="phoneCallAvailabilityStatus" optional="YES" attributeType="String"/>
+        <attribute name="phonePricePerMinute" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="positiveFeedbacksCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="profileVisible" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="recommendPercent" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="relayNumber" optional="YES" attributeType="String"/>
+        <attribute name="summary" optional="YES" attributeType="String"/>
+        <attribute name="toolNames" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="topicNames" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="typicalSchedule" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="videoPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="yearsOfExperience" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="arrangedCall" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ManagedArrangedCall" inverseName="advisor" inverseEntity="ManagedArrangedCall"/>
+        <relationship name="chat" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ManagedChat" inverseName="advisor" inverseEntity="ManagedChat"/>
+        <relationship name="history" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedHistory" inverseName="advisor" inverseEntity="ManagedHistory"/>
+        <relationship name="historyDetail" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedHistoryDetails" inverseName="advisor" inverseEntity="ManagedHistoryDetails"/>
+        <relationship name="reviews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedReview" inverseName="advisor" inverseEntity="ManagedReview"/>
+        <relationship name="similars" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedAdvisorShort" inverseName="similarTo" inverseEntity="ManagedAdvisorShort"/>
+    </entity>
+    <entity name="ManagedAdvisorSchedule" representedClassName="ManagedAdvisorSchedule" syncable="YES">
+        <attribute name="advisorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="day" attributeType="String"/>
+        <attribute name="endTime" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startTime" attributeType="String"/>
+    </entity>
+    <entity name="ManagedAdvisorSearchResult" representedClassName="ManagedAdvisorSearchResult" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="advisor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedAdvisorShort" inverseName="searchResult" inverseEntity="ManagedAdvisorShort"/>
+    </entity>
+    <entity name="ManagedAdvisorShort" representedClassName="ManagedAdvisorShort" syncable="YES">
+        <attribute name="advisorIds" optional="YES" attributeType="String"/>
+        <attribute name="arrangedCallList" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="arrangedCallOrder" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="biography" optional="YES" attributeType="String"/>
+        <attribute name="blocked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="canTip" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="chatAvailability" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="closed" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="favoriteList" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="favoriteOrder" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="iconPath" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isVideoCallingAvailable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="phoneCallAvailabilityStatus" optional="YES" attributeType="String"/>
+        <attribute name="phonePricePerMinute" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="positiveFeedbacksCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="profileVisible" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="recentList" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="recentOrder" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="relayNumber" optional="YES" attributeType="String"/>
+        <attribute name="smallIconPath" optional="YES" attributeType="String"/>
+        <attribute name="suggestedList" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="suggestedOrder" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String"/>
+        <attribute name="typicalSchedule" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="videoPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="yearsOfExperience" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="arrangedCall" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ManagedArrangedCall" inverseName="advisorShort" inverseEntity="ManagedArrangedCall"/>
+        <relationship name="searchResult" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ManagedAdvisorSearchResult" inverseName="advisor" inverseEntity="ManagedAdvisorSearchResult"/>
+        <relationship name="similar" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ManagedSimilarResult" inverseName="advisor" inverseEntity="ManagedSimilarResult"/>
+        <relationship name="similarTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedAdvisor" inverseName="similars" inverseEntity="ManagedAdvisor"/>
+    </entity>
+    <entity name="ManagedAdvisorStyle" representedClassName="ManagedAdvisorStyle" syncable="YES">
+        <attribute name="approach" optional="YES" attributeType="String"/>
+        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="preferChatAvailability" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="preferPhoneAvailability" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="tools" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="topics" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedProfile" inverseName="preferredAdvisorStyle" inverseEntity="ManagedProfile"/>
+    </entity>
+    <entity name="ManagedAlert" representedClassName="ManagedAlert" syncable="YES">
+        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String"/>
+        <attribute name="isRead" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ManagedArrangedCall" representedClassName="ManagedArrangedCall" syncable="YES">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="waitUntil" attributeType="Date" defaultDateTimeInterval="617010240" usesScalarValueType="NO"/>
+        <relationship name="advisor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedAdvisor" inverseName="arrangedCall" inverseEntity="ManagedAdvisor"/>
+        <relationship name="advisorShort" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedAdvisorShort" inverseName="arrangedCall" inverseEntity="ManagedAdvisorShort"/>
+    </entity>
+    <entity name="ManagedCall" representedClassName="ManagedCall" syncable="YES">
+        <attribute name="advisorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="billedDuration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="failureReason" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="seekerBilledAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="seekerId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ManagedChat" representedClassName="ManagedChat" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isLastMessageReceived" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isRead" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastActivityDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastMessageContent" optional="YES" attributeType="String"/>
+        <attribute name="lastMessageType" optional="YES" attributeType="String"/>
+        <relationship name="advisor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedAdvisor" inverseName="chat" inverseEntity="ManagedAdvisor"/>
+        <relationship name="chat" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ManagedMessage" inverseName="chat" inverseEntity="ManagedMessage"/>
+    </entity>
+    <entity name="ManagedCommunityMoodAverageRange" representedClassName="ManagedCommunityMoodAverageRange" syncable="YES">
+        <attribute name="averages" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="interval" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ManagedCreditCard" representedClassName=".ManagedCreditCard" syncable="YES">
+        <attribute name="cardType" optional="YES" attributeType="String"/>
+        <attribute name="expirationMonth" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="expirationYear" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isDefault" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastFourDigits" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedProfile" inverseName="creditCards" inverseEntity="ManagedProfile"/>
+    </entity>
+    <entity name="ManagedHistory" representedClassName=".ManagedHistory" syncable="YES">
+        <attribute name="advisorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="advisor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedAdvisor" inverseName="history" inverseEntity="ManagedAdvisor"/>
+        <relationship name="details" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedHistoryDetails" inverseName="basicInfo" inverseEntity="ManagedHistoryDetails"/>
+    </entity>
+    <entity name="ManagedHistoryDetails" representedClassName="ManagedHistoryDetails" syncable="YES">
+        <attribute name="additionalInfo" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="advisor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedAdvisor" inverseName="historyDetail" inverseEntity="ManagedAdvisor"/>
+        <relationship name="basicInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedHistory" inverseName="details" inverseEntity="ManagedHistory"/>
+    </entity>
+    <entity name="ManagedIncompleteFeedback" representedClassName="ManagedIncompleteFeedback" syncable="YES">
+        <attribute name="callDatetime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="callId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="closed" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="iconPath" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="profileVisible" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="ManagedMessage" representedClassName="ManagedMessage" syncable="YES">
+        <attribute name="chatId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="content" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateSection" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="iconPath" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isChargeable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isFailed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isMessageDeleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isReceived" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isSending" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isUnread" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="resourceUUID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="chat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedChat" inverseName="chat" inverseEntity="ManagedChat"/>
+    </entity>
+    <entity name="ManagedMoodTrackerEntry" representedClassName="ManagedMoodTrackerEntry" syncable="YES">
+        <attribute name="date" attributeType="Date" defaultDateTimeInterval="621283260" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isSynchronized" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="mood" attributeType="String"/>
+        <attribute name="note" attributeType="String" defaultValueString=""/>
+        <attribute name="otherTopic" optional="YES" attributeType="String"/>
+        <attribute name="submoods" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="topics" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="ManagedPhone" representedClassName="ManagedPhone" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isDefault" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="number" attributeType="String"/>
+        <attribute name="verificationGuid" optional="YES" attributeType="String"/>
+        <attribute name="verified" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedProfile" inverseName="userPhones" inverseEntity="ManagedProfile"/>
+    </entity>
+    <entity name="ManagedProfile" representedClassName="ManagedProfile" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="promoEmail" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="promoPush" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="promoSMS" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="creditCards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedCreditCard" inverseName="profile" inverseEntity="ManagedCreditCard"/>
+        <relationship name="currentUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedUser" inverseName="profile" inverseEntity="ManagedUser"/>
+        <relationship name="preferredAdvisorStyle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedAdvisorStyle" inverseName="profile" inverseEntity="ManagedAdvisorStyle"/>
+        <relationship name="userPhones" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedPhone" inverseName="profile" inverseEntity="ManagedPhone"/>
+    </entity>
+    <entity name="ManagedPurchasedOffer" representedClassName="ManagedPurchasedOffer" syncable="YES">
+        <attribute name="availability" optional="YES" attributeType="String"/>
+        <attribute name="currentQuantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="expiresAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="minutes" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="originalQuantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="offer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedSpecialOffer" inverseName="purchase" inverseEntity="ManagedSpecialOffer"/>
+    </entity>
+    <entity name="ManagedReview" representedClassName="ManagedReview" syncable="YES">
+        <attribute name="advisorId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="content" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="621283500" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="99999" usesScalarValueType="YES"/>
+        <attribute name="ownReview" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="private" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="seekerId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="seekerName" attributeType="String"/>
+        <attribute name="vote" attributeType="String"/>
+        <relationship name="advisor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedAdvisor" inverseName="reviews" inverseEntity="ManagedAdvisor"/>
+    </entity>
+    <entity name="ManagedSimilarResult" representedClassName="ManagedSimilarResult" syncable="YES">
+        <attribute name="advisorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="advisor" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedAdvisorShort" inverseName="similar" inverseEntity="ManagedAdvisorShort"/>
+    </entity>
+    <entity name="ManagedSpecialOffer" representedClassName="ManagedSpecialOffer" syncable="YES">
+        <attribute name="availability" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="offerDescription" optional="YES" attributeType="String"/>
+        <attribute name="offerPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="quantityMessages" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="quantityMinutes" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="purchase" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPurchasedOffer" inverseName="offer" inverseEntity="ManagedPurchasedOffer"/>
+    </entity>
+    <entity name="ManagedTimezone" representedClassName="ManagedTimezone" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isCurrent" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="label" optional="YES" attributeType="String"/>
+        <attribute name="timezone" optional="YES" attributeType="String"/>
+        <attribute name="utcOffset" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="ManagedUser" representedClassName=".ManagedUser" syncable="YES">
+        <attribute name="availableBalance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="balance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="fullName" optional="YES" attributeType="String"/>
+        <attribute name="hasNotifications" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="onboarded" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="privateChannelName" optional="YES" attributeType="String"/>
+        <attribute name="tippableBalance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="unreadMessageCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedProfile" inverseName="currentUser" inverseEntity="ManagedProfile"/>
+    </entity>
+    <elements>
+        <element name="ManagedAdvisor" positionX="0" positionY="0" width="128" height="509"/>
+        <element name="ManagedAdvisorSchedule" positionX="9" positionY="153" width="128" height="118"/>
+        <element name="ManagedAdvisorSearchResult" positionX="0" positionY="0" width="128" height="73"/>
+        <element name="ManagedAdvisorShort" positionX="0" positionY="0" width="128" height="554"/>
+        <element name="ManagedAdvisorStyle" positionX="0" positionY="0" width="128" height="163"/>
+        <element name="ManagedAlert" positionX="9" positionY="153" width="128" height="135"/>
+        <element name="ManagedArrangedCall" positionX="9" positionY="153" width="128" height="103"/>
+        <element name="ManagedCall" positionX="9" positionY="153" width="128" height="148"/>
+        <element name="ManagedChat" positionX="9" positionY="153" width="128" height="163"/>
+        <element name="ManagedCommunityMoodAverageRange" positionX="9" positionY="153" width="128" height="88"/>
+        <element name="ManagedCreditCard" positionX="0" positionY="0" width="128" height="210"/>
+        <element name="ManagedHistory" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="ManagedHistoryDetails" positionX="9" positionY="153" width="128" height="105"/>
+        <element name="ManagedIncompleteFeedback" positionX="0" positionY="0" width="128" height="148"/>
+        <element name="ManagedMessage" positionX="0" positionY="0" width="128" height="268"/>
+        <element name="ManagedMoodTrackerEntry" positionX="9" positionY="153" width="128" height="178"/>
+        <element name="ManagedPhone" positionX="0" positionY="0" width="128" height="133"/>
+        <element name="ManagedProfile" positionX="0" positionY="0" width="128" height="163"/>
+        <element name="ManagedPurchasedOffer" positionX="0" positionY="0" width="128" height="163"/>
+        <element name="ManagedReview" positionX="0" positionY="0" width="128" height="208"/>
+        <element name="ManagedSimilarResult" positionX="0" positionY="0" width="128" height="103"/>
+        <element name="ManagedSpecialOffer" positionX="0" positionY="0" width="128" height="148"/>
+        <element name="ManagedTimezone" positionX="0" positionY="0" width="128" height="118"/>
+        <element name="ManagedUser" positionX="0" positionY="0" width="128" height="208"/>
+    </elements>
+</model>
