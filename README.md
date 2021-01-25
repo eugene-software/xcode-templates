@@ -13,7 +13,10 @@ $ swift install.swift
   4. Close xcode project. 
   5. In terminal:
 ```sh
-$ cd [Project Name]
+$ cd [Project path]
 $ pod install
 ```
-  6. Project is ready to add new screens and other stuff. 
+  6. Open [Project Name].xcworkspace and enjoy coding.
+
+
+  # Description [in progress...]
