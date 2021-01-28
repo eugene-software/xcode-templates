@@ -286,8 +286,8 @@ private extension NSManagedObjectContext {
     
     var hasChanges: Bool {
 
-        let registeredObjects = self.registeredObjects.filter { return $0.hasPersistentChangedValues }
-        let updatedObjects = self.updatedObjects.filter { return $0.hasPersistentChangedValues }
+        let registeredObjects = self.registeredObjects.filter { return $0.changedValues().count > 0 }
+        let updatedObjects = self.updatedObjects.filter { return $0.changedValues().count > 0 }
         return (updatedObjects.count > 0) || (registeredObjects.count > 0) || !insertedObjects.isEmpty || !deletedObjects.isEmpty
     }
     
