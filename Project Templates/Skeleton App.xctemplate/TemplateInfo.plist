@@ -8,17 +8,44 @@
 	<string>io.idevs.dt.unit.SKELETON</string>
 	<key>Ancestors</key>
 	<array>
-		<string>io.idevs.dt.unit.cocoaTouchApplicationBase</string>
-		<string>com.apple.dt.unit.languageChoice</string>
+		<string>com.apple.dt.unit.crossPlatformAppBase_iOS</string>
+		<string>com.apple.dt.unit.iosBase</string>
+	</array>
+	<key>Platforms</key>
+	<array>
+		<string>com.apple.platform.iphoneos</string>
 	</array>
 	<key>Concrete</key>
 	<true/>
+	<key>Targets</key>
+	<array>
+		<dict>
+			<key>Name</key>
+			<string>___PACKAGENAME___</string>
+			<key>SharedSettings</key>
+			<dict>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+			</dict>
+		</dict>
+	</array>
 	<key>Description</key>
 	<string>This template provides a starting point for an application that uses a &quot;VIPER&quot; Architecture.</string>
+	<key>Nodes</key>
+	<array>
+		<string>Info.plist:iPhone</string>
+		<string>Info.plist:UIRequiredDeviceCapabilities:base</string>
+		<string>Info.plist:UISupportedInterfaceOrientations~iPhone</string>
+		<string>Info.plist:UISupportedInterfaceOrientations~iPad</string>
+		<string>Info.plist:UIApplicationSupportsIndirectInputEvents</string>
+	</array>
 	<key>SortOrder</key>
 	<integer>1</integer>
 	<key>Definitions</key>
 	<dict>
+		<key>Info.plist:UIMainStoryboardFile</key>
+		<string>&lt;key&gt;UIMainStoryboardFile&lt;/key&gt;
+&lt;string&gt;Main-___PACKAGENAME___&lt;/string&gt;</string>
 		<key>Core/Networking/CustomJSONCoding.swift</key>
 		<dict>
 			<key>Group</key>
@@ -630,6 +657,28 @@
 			<string>AppDelegate.swift</string>
 		</dict>
 	</dict>
+	<key>Project</key>
+	<dict>
+		<key>Configurations</key>
+		<dict>
+			<key>Debug</key>
+			<dict>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>GCC_INSTRUMENT_PROGRAM_FLOW_ARCS</key>
+				<string>YES</string>
+				<key>GCC_GENERATE_TEST_COVERAGE_FILES</key>
+				<string>YES</string>
+				<key>OTHER_SWIFT_FLAGS</key>
+				<string>-D DEBUG</string>
+			</dict>
+			<key>Release</key>
+			<dict>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Owholemodule</string>
+			</dict>
+		</dict>
+	</dict>
 	<key>Options</key>
 	<array>
 		<dict>
@@ -644,6 +693,8 @@
 					<key>Nodes</key>
 					<array>
 						<string>Core/Networking/CustomJSONCoding.swift</string>
+						<string>Base.lproj/Main.storyboard</string>
+						<string>Info.plist:UIMainStoryboardFile</string>
 						<string>Core/Networking/SwiftyBeaver+ext.swift</string>
 						<string>Core/Networking/NetworkApiManager.swift</string>
 						<string>Core/Networking/HTTPStatusCode.swift</string>
