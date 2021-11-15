@@ -17,7 +17,7 @@ class CoreDataReader<ExportedType: Codable> { }
 extension CoreDataReader: DatabaseReaderProtocol where ExportedType: CoreDataCompatible {
     
     typealias ReadType = ExportedType
-
+    
     static func exportRemoteSingle(predicate: NSPredicate?) -> ReadType? {
         
         let controller = CoreDataStorageController.shared
@@ -33,15 +33,22 @@ extension CoreDataReader: DatabaseReaderProtocol where ExportedType: CoreDataCom
     static func exportRemote(_ type: ReadType.Type, predicate: NSPredicate?) -> Promise<ReadType?> {
         
         let controller = CoreDataStorageController.shared
-        let objects = controller.query(type: ReadType.self,
-                                       predicate: predicate,
-                                       context: controller.viewContext,
-                                       sortDescriptors: nil,
-                                       fetchLimit: 1)
         
-        let object = objects?.first?.getObject() as? ReadType
-        
-        return Promise.value(object)
+        return Promise { seal in
+            
+            controller.asyncQuery(type: ReadType.self,
+                                  predicate: predicate,
+                                  context: controller.viewContext,
+                                  sortDescriptors: nil,
+                                  fetchLimit: 1)
+            { result in
+                
+                let object = result?.first?.getObject() as? ReadType
+                DispatchQueue.main.async {
+                    seal.fulfill(object)
+                }
+            }
+        }
     }
     
     static func exportRemoteList(_ type: ReadType.Type, predicate: NSPredicate?, sort: [NSSortDescriptor]?) -> Promise<[ReadType]?> {

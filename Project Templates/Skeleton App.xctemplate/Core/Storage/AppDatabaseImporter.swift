@@ -15,16 +15,6 @@ protocol DatabaseWriterProtocol {
     
     associatedtype WriteType: Codable
     
-    /// Efficiently reloads entities by reloading passed ones and removing others
-    ///
-    /// - Parameters:
-    ///   - objectsToImport: Objects to be imported to database
-    /// - Returns: An empty promise when the work is finished
-    ///
-    
-    @discardableResult
-    static func reloadEntities(_ objectsToImport: [WriteType], predicate: NSPredicate?, valuesToBeReloaded: [String: Any?]?) -> Promise<Void>
-    
     /// Efficiently removes all objects by entity name from the database.
     ///
     /// - Parameters:
@@ -38,9 +28,7 @@ protocol DatabaseWriterProtocol {
     ///
     /// - Parameters:
     ///   - objectToDelete: Object to be deleted from database
-    ///   - id: id for searching existing object and delete it
-    ///   - idKey: Id key for search
-    ///   - writer: DatabaseWriter object for operations
+    ///   - predicate: predicate for searching existing object and delete it
     /// - Returns: An empty promise when the work is finished
     ///
     @discardableResult
@@ -59,7 +47,6 @@ protocol DatabaseWriterProtocol {
     ///
     /// - Parameters:
     ///   - objectsToImport: Objects to be imported to database
-    ///   - writer: DatabaseWriter object for operations
     /// - Returns: An empty promise when the work is finished
     ///
     @discardableResult
@@ -73,10 +60,6 @@ extension AppDatabaseImporter: DatabaseWriterProtocol where ImportedType: CoreDa
     
     typealias Writer = CoreDataWriter
     typealias WriteType = ImportedType
-    
-    static func reloadEntities(_ objectsToImport: [WriteType], predicate: NSPredicate? = nil, valuesToBeReloaded: [String: Any?]? = nil) -> Promise<Void> {
-        return Writer<WriteType>.reloadEntities(objectsToImport, predicate: predicate, valuesToBeReloaded: valuesToBeReloaded)
-    }
     
     @discardableResult
     static func deleteEntities(_ entity: WriteType.Type) -> Promise<Void> {

@@ -18,32 +18,6 @@ extension CoreDataWriter: DatabaseWriterProtocol where ImportedType: CoreDataCom
     
     typealias WriteType = ImportedType
     
-    static func reloadEntities(_ objectsToImport: [WriteType], predicate: NSPredicate?, valuesToBeReloaded: [String: Any?]?) -> Promise<Void> {
-        return Promise<Void> { seal in
-            
-            let ids = objectsToImport.map { $0.primaryKey }
-            
-            let main = NSPredicate(format: "NOT (id IN %@)", argumentArray: [ids])
-            let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, main].compactMap { $0 })
-            
-            CoreDataStorageController.shared.save(saveBlock:
-                {
-                    if let values = valuesToBeReloaded {
-                       CoreDataStorageController.shared.setValues(type: WriteType.self, values: values, predicate: compound)
-                    } else {
-                        CoreDataStorageController.shared.deletePersistentObjects(type: WriteType.self, with: compound)
-                    }
-                   objectsToImport.forEach {
-                       let predicate = NSPredicate(key: $0.primaryKeyName, value: $0.primaryKey)
-                       _ = CoreDataStorageController.shared.fetchOrCreate(object: $0, predicate:predicate)
-                   }
-               }
-               ){
-                   seal.fulfill(Void())
-               }
-        }
-    }
-    
     static func deleteEntities(_ entity: WriteType.Type) -> Promise<Void> {
         
         return Promise<Void> { seal in
@@ -74,6 +48,7 @@ extension CoreDataWriter: DatabaseWriterProtocol where ImportedType: CoreDataCom
 
         let predicate = predicate ?? NSPredicate(key: objectToImport.primaryKeyName,
                                                  value: objectToImport.primaryKey)
+        
         return Promise<Void> { seal in
             
             CoreDataStorageController.shared.save(saveBlock: {

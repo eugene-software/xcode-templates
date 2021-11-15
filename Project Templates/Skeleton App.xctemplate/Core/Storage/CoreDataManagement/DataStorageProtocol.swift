@@ -52,10 +52,6 @@ protocol CoreDataExportable {
 //
 protocol CoreDataStorageInterface {
     
-    func setValues<Type: CoreDataCompatible>(type: Type.Type, values: [String: Any?], predicate: NSPredicate?)
-    
-    func count<Type: CoreDataCompatible>(type: Type.Type, predicate: NSPredicate, context: NSManagedObjectContext?) -> Int
-    
     /// NSManagedObjectContext object related to main thread. SHould be used only for UI operations
     ///
     var viewContext: NSManagedObjectContext { get }
@@ -80,6 +76,22 @@ protocol CoreDataStorageInterface {
     ///
     
     func query<Type: CoreDataCompatible>(type: Type.Type, predicate: NSPredicate?, context: NSManagedObjectContext?, sortDescriptors: [NSSortDescriptor]?, fetchLimit: Int?) -> [Type.ManagedType]?
+    
+    /// Asynchronously Fetches a list of objects by passed NSPredicate
+    /// - Parameters:
+    ///   - type: CoreDataCompatible object custom type
+    ///   - predicate: a predicate to fetch needed data
+    ///   - context: Context from which we need to fetch
+    ///   - completion: a completion performed on context's thread
+    /// - Returns: a list of NSManagedObjectModel custom objects
+    ///
+    func asyncQuery<Type>(type: Type.Type,
+                          predicate: NSPredicate?,
+                          context: NSManagedObjectContext?,
+                          sortDescriptors: [NSSortDescriptor]?,
+                          fetchLimit: Int?,
+                          completion: @escaping ([Type.ManagedType]?) -> Void) where Type : CoreDataCompatible
+    
     
     /// Deletes a list of objects by passed NSPredicate
     /// - Parameters:

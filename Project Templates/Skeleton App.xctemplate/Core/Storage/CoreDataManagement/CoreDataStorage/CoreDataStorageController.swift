@@ -41,7 +41,6 @@ class CoreDataStorageController: NSObject {
         
         super.init()
         loadStore(completionClosure: completionClosure)
-        setupObservers()
     }
     
     func loadStore(completionClosure: (() -> Void)?) {
@@ -61,10 +60,6 @@ class CoreDataStorageController: NSObject {
         backgroundContext?.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-    }
-    
-    func setupObservers() {
-       
     }
 }
 
@@ -91,32 +86,17 @@ extension CoreDataStorageController: CoreDataStorageInterface {
         return context?.safeFetch(fetchRequest)
     }
     
-    func setValues<Type: CoreDataCompatible>(type: Type.Type, values: [String: Any?], predicate: NSPredicate?) {
+    func asyncQuery<Type>(type: Type.Type,
+                          predicate: NSPredicate?,
+                          context: NSManagedObjectContext?,
+                          sortDescriptors: [NSSortDescriptor]?,
+                          fetchLimit: Int?,
+                          completion: @escaping ([Type.ManagedType]?) -> Void) where Type : CoreDataCompatible {
         
-        guard !values.isEmpty else { return }
-        
-        let entityName = String(describing: Type.ManagedType.self)
-        let fetchRequest = NSFetchRequest<Type.ManagedType>(entityName: entityName)
-        fetchRequest.predicate = predicate
-        
-        let result = backgroundContext?.safeFetch(fetchRequest)
-        result?.forEach({ (obj) in
-            
-            values.forEach { (key, value) in
-                obj.setValue(value, forKeyPath: key)
-            }
-        })
-    }
-    
-    func count<Type: CoreDataCompatible>(type: Type.Type, predicate: NSPredicate, context: NSManagedObjectContext?) -> Int {
-        
-        let context = context ?? backgroundContext
-        
-        let entityName = String(describing: Type.ManagedType.self)
-        let fetchRequest = NSFetchRequest<Type.ManagedType>(entityName: entityName)
-        fetchRequest.predicate = predicate
-        
-        return (try? context?.count(for: fetchRequest)) ?? 0
+        context?.perform { [weak self] in
+            let result = self?.query(type: type, predicate: predicate, context: context, sortDescriptors: sortDescriptors, fetchLimit: fetchLimit)
+            completion(result)
+        }
     }
     
     func deletePersistentObjects<Type>(type: Type.Type, with predicate: NSPredicate?) where Type : CoreDataCompatible {
