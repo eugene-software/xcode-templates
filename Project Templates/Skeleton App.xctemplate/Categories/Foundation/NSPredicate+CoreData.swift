@@ -12,15 +12,25 @@ import Foundation
 
 extension NSPredicate {
     
-    convenience init(key: String, id: Int64) {
-        
-        let predicateString = String(format: "%@ == %li", key, id)
-        self.init(format: predicateString)
+    enum CompoundType {
+        case and
+        case or
     }
     
-    convenience init(id: Int64) {
+    convenience init(key: String, value: Any) {
+        self.init(format: "%@ == %@", key, value as! CVarArg)
+    }
+    
+    convenience init(value: Any) {
         
-        let predicateString = String(format: "id == %li", id)
-        self.init(format: predicateString)
+        self.init(format: "id== %@", value as! CVarArg)
+    }
+    
+    func appending(predicate: NSPredicate, type: CompoundType) -> NSPredicate {
+        
+        switch type {
+        case .and: return NSCompoundPredicate(andPredicateWithSubpredicates: [self, predicate])
+        case .or: return NSCompoundPredicate(orPredicateWithSubpredicates: [self, predicate])
+        }
     }
 }

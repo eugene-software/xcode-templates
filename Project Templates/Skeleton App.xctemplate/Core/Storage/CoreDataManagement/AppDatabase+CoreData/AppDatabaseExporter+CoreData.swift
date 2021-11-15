@@ -10,35 +10,54 @@
 
 import Foundation
 import CoreData
+import PromiseKit
 
 class CoreDataReader<ExportedType: Codable> { }
 
 extension CoreDataReader: DatabaseReaderProtocol where ExportedType: CoreDataCompatible {
     
     typealias ReadType = ExportedType
-    
-    static func count(predicate: NSPredicate)  -> Int {
-        return CoreDataStorageController.shared.count(type: ReadType.self, predicate: predicate, context: CoreDataStorageController.shared.viewContext)
-    }
-    
-    static func exportRemote(with id: Int64, idKey: String) -> ReadType? {
+
+    static func exportRemoteSingle(predicate: NSPredicate?) -> ReadType? {
         
         let controller = CoreDataStorageController.shared
-        let objects = controller.findPersistentObjects(type: ReadType.self, with: NSPredicate(key: idKey, id: id), context: controller.viewContext)
+        let objects = controller.query(type: ReadType.self,
+                                       predicate: predicate,
+                                       context: controller.viewContext,
+                                       sortDescriptors: nil,
+                                       fetchLimit: 1)
         
         return objects?.first?.getObject() as? ReadType
     }
     
-    static func exportRemoteList(with predicate: NSPredicate?) -> [ReadType]? {
+    static func exportRemote(_ type: ReadType.Type, predicate: NSPredicate?) -> Promise<ReadType?> {
+        
+        let controller = CoreDataStorageController.shared
+        let objects = controller.query(type: ReadType.self,
+                                       predicate: predicate,
+                                       context: controller.viewContext,
+                                       sortDescriptors: nil,
+                                       fetchLimit: 1)
+        
+        let object = objects?.first?.getObject() as? ReadType
+        
+        return Promise.value(object)
+    }
+    
+    static func exportRemoteList(_ type: ReadType.Type, predicate: NSPredicate?, sort: [NSSortDescriptor]?) -> Promise<[ReadType]?> {
         
         let controller = CoreDataStorageController.shared
         
-        let objects = controller.findPersistentObjects(type: ReadType.self, with: predicate, context: controller.viewContext)
+        let objects = controller.query(type: type,
+                                       predicate: predicate,
+                                       context: controller.viewContext,
+                                       sortDescriptors: sort,
+                                       fetchLimit: nil)
         
-        print(String(format: "Export Remote List with %@", String(describing: ReadType.ManagedType.self)))
-        
-        return objects?.compactMap { obj in
+        let mapped = objects?.compactMap { obj in
             return obj.getObject() as? ReadType
         }
+        
+        return Promise.value(mapped)
     }
 }

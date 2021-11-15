@@ -15,37 +15,35 @@ protocol DatabaseReaderProtocol {
     
     associatedtype ReadType: Codable
     
-    /// Efficiently saves Updatable object to the database.
+    /// Efficiently exports Updatable object from the database.
     ///
     /// - Parameters:
-    ///   - objectToImport: Object to be imported to database
-    ///   - id: id for searching existing object and update it if found
-    ///   - idKey: Id key for search
-    ///   - writer: DatabaseWriter object for operations
-    /// - Returns: An empty promise when the work is finished
+    ///   - type: Type of object
+    ///   - predicate: predicate for searching
+    /// - Returns: A promise with object when the work is finished
     ///
     @discardableResult
-    static func exportRemote(with id: Int64, idKey: String) -> ReadType?
+    static func exportRemote(_ type: ReadType.Type, predicate: NSPredicate?) -> Promise<ReadType?>
     
-    /// Efficiently saves Updatable object list to the database.
+    /// Efficiently exports Updatable object from the database.
     ///
     /// - Parameters:
-    ///   - objectsToImport: Objects to be imported to database
-    ///   - writer: DatabaseWriter object for operations
-    /// - Returns: An empty promise when the work is finished
+    ///   - predicate: predicate for searching
+    /// - Returns: A single object
     ///
     @discardableResult
-    static func exportRemoteList(with predicate: NSPredicate?)  -> [ReadType]?
+    static func exportRemoteSingle(predicate: NSPredicate?) -> ReadType?
     
-    static func count(predicate: NSPredicate) -> Int
-}
-
-extension DatabaseReaderProtocol {
-    
+    /// Efficiently exports Updatable objects list from the database.
+    ///
+    /// - Parameters:
+    ///   - type: Type of objects
+    ///   - predicate: predicate for searching
+    ///   - sort: sort descriptors for ordering
+    /// - Returns: A promise with a list of objects when the work is finished
+    ///
     @discardableResult
-    static func exportRemote(with id: Int64, idKey: String = "id") -> ReadType? {
-        return exportRemote(with: id, idKey: idKey)
-    }
+    static func exportRemoteList(_ type: ReadType.Type, predicate: NSPredicate?, sort: [NSSortDescriptor]?)  -> Promise<[ReadType]?>
 }
 
 
@@ -55,16 +53,16 @@ extension AppDatabaseExporter: DatabaseReaderProtocol where ExportedType: CoreDa
     
     typealias Reader = CoreDataReader
     typealias ReadType = ExportedType
-    
-    static func count(predicate: NSPredicate) -> Int {
-        return Reader<ReadType>.count(predicate: predicate)
+
+    static func exportRemoteSingle(predicate: NSPredicate?) -> ReadType? {
+        return Reader<ReadType>.exportRemoteSingle(predicate: predicate)
     }
     
-    static func exportRemote(with id: Int64, idKey: String) -> ReadType? {
-        return Reader<ReadType>.exportRemote(with: id, idKey: idKey)
+    static func exportRemote(_ type: ReadType.Type, predicate: NSPredicate?) -> Promise<ReadType?> {
+        return Reader<ReadType>.exportRemote(type, predicate: predicate)
     }
     
-    static func exportRemoteList(with predicate: NSPredicate?) -> [ReadType]? {
-       return Reader<ReadType>.exportRemoteList(with: predicate)
+    static func exportRemoteList(_ type: ReadType.Type, predicate: NSPredicate?, sort: [NSSortDescriptor]?) -> Promise<[ReadType]?> {
+       return Reader<ReadType>.exportRemoteList(type, predicate: predicate, sort: sort)
     }
 }

@@ -44,19 +44,17 @@ protocol DatabaseWriterProtocol {
     /// - Returns: An empty promise when the work is finished
     ///
     @discardableResult
-    static func deleteRemote(_ objectToDelete: WriteType?, with id: Int64, idKey: String) -> Promise<Void>
+    static func deleteRemote(_ objectToDelete: WriteType?, predicate: NSPredicate) -> Promise<Void>
     
     /// Efficiently saves Updatable object to the database.
     ///
     /// - Parameters:
     ///   - objectToImport: Object to be imported to database
-    ///   - id: id for searching existing object and update it if found
-    ///   - idKey: Id key for search
-    ///   - writer: DatabaseWriter object for operations
+    ///   - predicate: predicate for searching existing object and update it if found
     /// - Returns: An empty promise when the work is finished
     ///
     @discardableResult
-    static func importRemote(_ objectToImport: WriteType?, with id: Int64, idKey: String) -> Promise<Void>
+    static func importRemote(_ objectToImport: WriteType, predicate: NSPredicate?) -> Promise<Void>
     /// Efficiently saves Updatable object list to the database.
     ///
     /// - Parameters:
@@ -66,19 +64,6 @@ protocol DatabaseWriterProtocol {
     ///
     @discardableResult
     static func importRemoteList(_ objectsToImport: [WriteType]) -> Promise<Void>
-}
-
-extension DatabaseWriterProtocol {
-    
-    @discardableResult
-    static func importRemote(_ objectToImport: WriteType?, with id: Int64, idKey: String = "id") -> Promise<Void> {
-        return importRemote(objectToImport, with: id, idKey: idKey)
-    }
-    
-    @discardableResult
-    static func deleteRemote(_ objectToDelete: WriteType?, with id: Int64, idKey: String = "id") -> Promise<Void> {
-        return deleteRemote(objectToDelete, with: id, idKey: idKey)
-    }
 }
 
 
@@ -99,13 +84,13 @@ extension AppDatabaseImporter: DatabaseWriterProtocol where ImportedType: CoreDa
     }
     
     @discardableResult
-    static func deleteRemote(_ objectToDelete: WriteType?, with id: Int64, idKey: String) -> Promise<Void> {
-        return Writer<WriteType>.deleteRemote(objectToDelete, with: id)
+    static func deleteRemote(_ objectToDelete: WriteType?, predicate: NSPredicate) -> Promise<Void> {
+        return Writer<WriteType>.deleteRemote(objectToDelete, predicate: predicate)
     }
     
     @discardableResult
-    static func importRemote(_ objectToImport: WriteType?, with id: Int64, idKey: String) -> Promise<Void> {
-        return Writer<WriteType>.importRemote(objectToImport, with: id, idKey: idKey)
+    static func importRemote(_ objectToImport: WriteType, predicate: NSPredicate?) -> Promise<Void> {
+        return Writer<WriteType>.importRemote(objectToImport, predicate: predicate)
     }
     
     @discardableResult

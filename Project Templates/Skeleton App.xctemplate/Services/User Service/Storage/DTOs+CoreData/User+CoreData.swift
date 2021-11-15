@@ -13,8 +13,12 @@ import CoreData
 
 extension User: CoreDataCompatible {
     
-    var primaryKey: Int64 {
+    var primaryKey: Any {
         return id
+    }
+    
+    var primaryKeyName: String {
+        "id"
     }
     
     init(managedObject: ManagedUser) {

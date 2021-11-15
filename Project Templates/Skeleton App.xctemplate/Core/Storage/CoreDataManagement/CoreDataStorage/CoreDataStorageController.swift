@@ -46,7 +46,7 @@ class CoreDataStorageController: NSObject {
     
     func loadStore(completionClosure: (() -> Void)?) {
         
-        persistentContainer = FrameworkPersistentContainer(name: "LocalStorageDataModel")
+        persistentContainer = FrameworkPersistentContainer(name: "ModelAltos")
         persistentContainer.loadPersistentStores() { (description, error) in
             if let error = error {
                 Crashlytics.crashlytics().record(error: error)
@@ -84,6 +84,10 @@ extension CoreDataStorageController: CoreDataStorageInterface {
         fetchRequest.sortDescriptors = sortDescriptors
         fetchRequest.predicate = predicate
         
+        if let limit = fetchLimit {
+            fetchRequest.fetchLimit = limit
+        }
+        
         return context?.safeFetch(fetchRequest)
     }
     
@@ -115,20 +119,6 @@ extension CoreDataStorageController: CoreDataStorageInterface {
         return (try? context?.count(for: fetchRequest)) ?? 0
     }
     
-    func findPersistentObjects<Type>(type: Type.Type, with predicate: NSPredicate?, context: NSManagedObjectContext?) -> [Type.ManagedType]? where Type : CoreDataCompatible {
-        
-        let context = context ?? backgroundContext
-        
-        // Fetch entity with appropriate class
-        //
-        let entityName = String(describing: Type.ManagedType.self)
-        let fetchRequest = NSFetchRequest<Type.ManagedType>(entityName: entityName)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-        fetchRequest.predicate = predicate
-        
-        return context?.safeFetch(fetchRequest)
-    }
-    
     func deletePersistentObjects<Type>(type: Type.Type, with predicate: NSPredicate?) where Type : CoreDataCompatible {
         
         let entityName = String(describing: Type.ManagedType.self)
@@ -151,13 +141,13 @@ extension CoreDataStorageController: CoreDataStorageInterface {
         }
     }
     
-    func fetchOrCreate<Type>(object: Type?, id: Int64, idKey: String) -> Type.ManagedType? where Type : CoreDataCompatible {
+    func fetchOrCreate<Type>(object: Type?, predicate: NSPredicate?) -> Type.ManagedType? where Type : CoreDataCompatible {
         
         guard let object = object as? Type.ManagedType.ExportType else { return nil }
         
         let entityName = String(describing: Type.ManagedType.self)
         let fetchRequest = NSFetchRequest<Type.ManagedType>(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(key: idKey, id: id)
+        fetchRequest.predicate = predicate
         
         let result = backgroundContext?.safeFetch(fetchRequest)
         if let first = result?.first {
@@ -170,11 +160,11 @@ extension CoreDataStorageController: CoreDataStorageInterface {
         }
     }
     
-    func remove<Type>(object: Type?, id: Int64, idKey: String) where Type : CoreDataCompatible {
+    func remove<Type>(object: Type?, predicate: NSPredicate) where Type : CoreDataCompatible {
         
         let name = String(describing: Type.ManagedType.self)
         let fetchRequest = NSFetchRequest<Type.ManagedType>(entityName: name)
-        fetchRequest.predicate = NSPredicate(key: idKey, id: id)
+        fetchRequest.predicate = predicate
         
         let results = backgroundContext?.safeFetch(fetchRequest)
 

@@ -34,7 +34,8 @@ extension CoreDataWriter: DatabaseWriterProtocol where ImportedType: CoreDataCom
                         CoreDataStorageController.shared.deletePersistentObjects(type: WriteType.self, with: compound)
                     }
                    objectsToImport.forEach {
-                       _ = CoreDataStorageController.shared.fetchOrCreate(object: $0, id: $0.primaryKey)
+                       let predicate = NSPredicate(key: $0.primaryKeyName, value: $0.primaryKey)
+                       _ = CoreDataStorageController.shared.fetchOrCreate(object: $0, predicate:predicate)
                    }
                }
                ){
@@ -56,12 +57,12 @@ extension CoreDataWriter: DatabaseWriterProtocol where ImportedType: CoreDataCom
         }
     }
     
-    static func deleteRemote(_ objectToDelete: WriteType?, with id: Int64, idKey: String = "id") -> Promise<Void> {
+    static func deleteRemote(_ objectToDelete: WriteType?, predicate: NSPredicate) -> Promise<Void> {
         
         return Promise<Void> { seal in
             
             CoreDataStorageController.shared.save(saveBlock: {
-                CoreDataStorageController.shared.remove(object: objectToDelete, id: id, idKey: idKey)
+                CoreDataStorageController.shared.remove(object: objectToDelete, predicate: predicate)
             }
             ){
                 seal.fulfill(Void())
@@ -69,12 +70,14 @@ extension CoreDataWriter: DatabaseWriterProtocol where ImportedType: CoreDataCom
         }
     }
     
-    static func importRemote(_ objectToImport: WriteType?, with id: Int64, idKey: String) -> Promise<Void> {
+    static func importRemote(_ objectToImport: WriteType, predicate: NSPredicate?) -> Promise<Void> {
 
+        let predicate = predicate ?? NSPredicate(key: objectToImport.primaryKeyName,
+                                                 value: objectToImport.primaryKey)
         return Promise<Void> { seal in
             
             CoreDataStorageController.shared.save(saveBlock: {
-                _ = CoreDataStorageController.shared.fetchOrCreate(object: objectToImport, id: id, idKey: idKey)
+                _ = CoreDataStorageController.shared.fetchOrCreate(object: objectToImport, predicate: predicate)
             }
             ){
                 seal.fulfill(Void())
@@ -87,7 +90,8 @@ extension CoreDataWriter: DatabaseWriterProtocol where ImportedType: CoreDataCom
         return Promise<Void> { seal in
             CoreDataStorageController.shared.save(saveBlock: {
                 objectsToImport.forEach {
-                    _ = CoreDataStorageController.shared.fetchOrCreate(object: $0, id: $0.primaryKey)
+                    let predicate = NSPredicate(key: $0.primaryKeyName, value: $0.primaryKey)
+                    _ = CoreDataStorageController.shared.fetchOrCreate(object: $0, predicate: predicate)
                 }
             }) {
                 seal.fulfill(Void())

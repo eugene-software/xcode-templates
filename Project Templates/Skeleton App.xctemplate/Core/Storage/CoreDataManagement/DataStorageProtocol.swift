@@ -17,7 +17,11 @@ protocol CoreDataCompatible {
     
     /// a primary key for managed object to make internal relationships available
     ///
-    var primaryKey: Int64 { get }
+    var primaryKey: Any { get }
+    
+    /// a primary key for managed object to make internal relationships available
+    ///
+    var primaryKeyName: String { get }
     
     /// Initializes a new external object with DB object
     /// - Parameters:
@@ -65,7 +69,7 @@ protocol CoreDataStorageInterface {
     ///   - context: Context from which we need to fetch
     /// - Returns: NSManagedObjectModel custom object related to Type passed in method
     ///
-    func fetchOrCreate<Type: CoreDataCompatible>(object: Type?, id: Int64, idKey: String) -> Type.ManagedType?
+    func fetchOrCreate<Type: CoreDataCompatible>(object: Type?, predicate: NSPredicate?) -> Type.ManagedType?
     
     /// Fetches a list of objects by passed NSPredicate
     /// - Parameters:
@@ -74,15 +78,7 @@ protocol CoreDataStorageInterface {
     ///   - context: Context from which we need to fetch
     /// - Returns: a list of NSManagedObjectModel custom objects
     ///
-    func findPersistentObjects<Type: CoreDataCompatible>(type: Type.Type, with predicate: NSPredicate?, context: NSManagedObjectContext?) -> [Type.ManagedType]?
-
-    /// Fetches a list of objects by passed NSPredicate
-    /// - Parameters:
-    ///   - type: CoreDataCompatible object custom type
-    ///   - predicate: a predicate to fetch needed data
-    ///   - context: Context from which we need to fetch
-    /// - Returns: a list of NSManagedObjectModel custom objects
-    ///
+    
     func query<Type: CoreDataCompatible>(type: Type.Type, predicate: NSPredicate?, context: NSManagedObjectContext?, sortDescriptors: [NSSortDescriptor]?, fetchLimit: Int?) -> [Type.ManagedType]?
     
     /// Deletes a list of objects by passed NSPredicate
@@ -99,7 +95,7 @@ protocol CoreDataStorageInterface {
     ///   - type: CoreDataCompatible object custom type
     ///   - object: an object to be removed
     ///
-    func remove<Type: CoreDataCompatible>(object: Type?, id: Int64, idKey: String)
+    func remove<Type: CoreDataCompatible>(object: Type?, predicate: NSPredicate)
     
     /// Removes all objects by entity type from database
     /// This method should be called inside "saveBlock" of "save" method
@@ -120,17 +116,5 @@ protocol CoreDataStorageInterface {
     func destroyAndReloadDatabase(completion: (() -> Void)?)
     
     func deleteTables(but names: [String], completion: (() -> Void)?)
-}
-
-
-extension CoreDataStorageInterface {
-    
-    func fetchOrCreate<Type: CoreDataCompatible>(object: Type?, id: Int64, idKey: String = "id") -> Type.ManagedType? {
-        return fetchOrCreate(object: object, id: id, idKey: idKey)
-    }
-    
-    func findPersistentObjects<Type: CoreDataCompatible>(type: Type.Type, with predicate: NSPredicate?) -> [Type.ManagedType]? {
-        return findPersistentObjects(type: type, with: predicate, context: nil)
-    }
 }
 
