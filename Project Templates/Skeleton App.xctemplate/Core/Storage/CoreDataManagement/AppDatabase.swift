@@ -15,16 +15,10 @@ import CoreData
 /// A type responsible for initializing the application's database
 public struct AppDatabase {
 
-    public static func openDatabase(in application: UIApplication) throws {
+    public static func openDatabase(in application: UIApplication) {
         
         //Initialize core data stack
         //
         _ = CoreDataStorageController.shared
-    }
-    
-    public static func deleteDatabase(keeping tablesToKeep: [NSManagedObject.Type], completion: (() -> Void)?) {
-        
-        let tablesToKeepNames = tablesToKeep.map { String(describing: $0) }
-        CoreDataStorageController.shared.deleteTables(but: tablesToKeepNames, completion: completion)
     }
 }

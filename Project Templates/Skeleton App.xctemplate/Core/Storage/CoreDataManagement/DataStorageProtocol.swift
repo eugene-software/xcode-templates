@@ -13,7 +13,7 @@ import CoreData
 
 protocol CoreDataCompatible {
     
-    associatedtype ManagedType: NSManagedObject, CoreDataExportable
+    associatedtype ManagedType: CoreDataExportable
     
     /// a primary key for managed object to make internal relationships available
     ///
@@ -31,7 +31,7 @@ protocol CoreDataCompatible {
 }
 
 
-protocol CoreDataExportable {
+protocol CoreDataExportable: NSManagedObject {
     
     associatedtype ExportType: CoreDataCompatible
     
@@ -52,81 +52,71 @@ protocol CoreDataExportable {
 //
 protocol CoreDataStorageInterface {
     
-    /// NSManagedObjectContext object related to main thread. SHould be used only for UI operations
-    ///
-    var viewContext: NSManagedObjectContext { get }
-    
-    /// Fetches an object or crates it if such doesn't exist and 'object' is passed
+    /// Fetches an objects or crates it if such doesn't exist and 'object' is passed
     /// This method should be called inside "saveBlock" of "save" method
     /// - Parameters:
-    ///   - object: A CoreDataPersistable object from which a new is to be created/updated
-    ///   - id: id value for search
-    ///   - idKey: a key for Id to search
-    ///   - context: Context from which we need to fetch
+    ///   - objects: A CoreDataCompatible objects list from which a new is to be created/updated
+    ///   - completion: a completion performed on context's thread
     /// - Returns: NSManagedObjectModel custom object related to Type passed in method
     ///
-    func fetchOrCreate<Type: CoreDataCompatible>(object: Type?, predicate: NSPredicate?) -> Type.ManagedType?
+    func insertList<Type: CoreDataCompatible>(objects: [Type?], completion: @escaping () -> Void)
     
     /// Fetches a list of objects by passed NSPredicate
     /// - Parameters:
     ///   - type: CoreDataCompatible object custom type
     ///   - predicate: a predicate to fetch needed data
-    ///   - context: Context from which we need to fetch
     /// - Returns: a list of NSManagedObjectModel custom objects
     ///
-    
-    func query<Type: CoreDataCompatible>(type: Type.Type, predicate: NSPredicate?, context: NSManagedObjectContext?, sortDescriptors: [NSSortDescriptor]?, fetchLimit: Int?) -> [Type.ManagedType]?
+    func query<Type: CoreDataExportable>(type: Type.Type,
+                                         predicate: NSPredicate?,
+                                         sortDescriptors: [NSSortDescriptor]?,
+                                         fetchLimit: Int?) -> [Type]?
     
     /// Asynchronously Fetches a list of objects by passed NSPredicate
     /// - Parameters:
     ///   - type: CoreDataCompatible object custom type
     ///   - predicate: a predicate to fetch needed data
-    ///   - context: Context from which we need to fetch
     ///   - completion: a completion performed on context's thread
     /// - Returns: a list of NSManagedObjectModel custom objects
     ///
-    func asyncQuery<Type>(type: Type.Type,
-                          predicate: NSPredicate?,
-                          context: NSManagedObjectContext?,
-                          sortDescriptors: [NSSortDescriptor]?,
-                          fetchLimit: Int?,
-                          completion: @escaping ([Type.ManagedType]?) -> Void) where Type : CoreDataCompatible
-    
+    func asyncQuery<Type: CoreDataExportable>(type: Type.Type,
+                                              predicate: NSPredicate?,
+                                              sortDescriptors: [NSSortDescriptor]?,
+                                              fetchLimit: Int?,
+                                              completion: @escaping ([Type]?) -> Void)
     
     /// Deletes a list of objects by passed NSPredicate
     /// - Parameters:
     ///   - type: CoreDataCompatible object custom type
     ///   - predicate: a predicate to delete needed data
+    ///   - completion: a completion performed on context's thread
     ///
+    func delete<Type: CoreDataExportable>(_ type: Type.Type, with predicate: NSPredicate?, completion: @escaping () -> Void)
     
-    func deletePersistentObjects<Type: CoreDataCompatible>(type: Type.Type, with predicate: NSPredicate?)
-    
-    /// Removes an object from database
-    /// This method should be called inside "saveBlock" of "save" method
+    /// Computes Integer result
     /// - Parameters:
     ///   - type: CoreDataCompatible object custom type
-    ///   - object: an object to be removed
+    ///   - operation: Name of operation
+    ///   - keyPath: Keypath for operation, should be a number
+    ///   - predicate: a predicate to select needed data
     ///
-    func remove<Type: CoreDataCompatible>(object: Type?, predicate: NSPredicate)
+    func compute<Type: CoreDataExportable>(_ type: Type.Type, operation: String, keyPath: String, predicate: NSPredicate?) -> Int?
     
-    /// Removes all objects by entity type from database
-    /// This method should be called inside "saveBlock" of "save" method
+    /// Gives FetchedResultsProvider object for UI collections
     /// - Parameters:
-    ///   - entity: an object type to be removed
+    ///   - type: CoreDataCompatible object custom type
+    ///   - mainPredicate: a predicate for selecting data
+    ///   - optionalPredicates: predicates for filtering data.
+    ///   - sorting: sort descriptors for sorting
+    ///   - sectionName: sections name field for sorting by sections
+    ///   - fetchLimit: a limit to fetch
+    /// - Returns: a FetchedResultsProviderInterface for UI collections
     ///
-    func remove<Type: CoreDataCompatible>(entity: Type.Type)
-    
-    /// Saves managed object context into persistent store
-    /// - Parameters:
-    ///   - saveBlock: this block is executed just before context.save() method. All modifying operations should be performed here
-    ///   - completionBlock: this block is executed just after context.save() method in .main thread
-    ///
-    func save(saveBlock: @escaping () -> Void, completionBlock: @escaping () -> Void)
-    
-    /// This method tries to destroys and then recreates a new persistent database
-    ///
-    func destroyAndReloadDatabase(completion: (() -> Void)?)
-    
-    func deleteTables(but names: [String], completion: (() -> Void)?)
+    func fetchedResultsProvider<Type: CoreDataCompatible>(_ type: Type.Type,
+                                                          mainPredicate: NSPredicate,
+                                                          optionalPredicates: [NSPredicate]?,
+                                                          sorting sortDescriptors: [NSSortDescriptor],
+                                                          sectionName: String?,
+                                                          fetchLimit: Int?) -> FetchedResultsProviderInterface
 }
 

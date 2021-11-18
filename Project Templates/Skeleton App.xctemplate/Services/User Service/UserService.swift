@@ -24,7 +24,7 @@ class UserService: UserServiceProtocol {
             NetworkApiManager.getUser()
         }.then { user -> Promise<User> in
 
-            return AppDatabaseImporter.importRemote(user, predicate: nil).map { _ in
+            return AppDatabaseImporter.importRemoteList([user]).map { _ in
                 let user: User? = AppDatabaseExporter.exportRemoteSingle(predicate: NSPredicate(value: user.id))
                 return user
             }.compactMap { $0 }
