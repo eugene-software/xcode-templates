@@ -9,17 +9,24 @@
 //
 
 import UIKit
+import Combine
 
 class ___VARIABLE_productName:identifier___ViewModel {
     
-//    Uncomment if view model has a delegate based callblack
-//    weak var delegate: ___VARIABLE_productName:identifier___ViewModelDelegate?
+    var router: ___VARIABLE_productName:identifier___RouterProtocol?
+    weak var moduleOutput: ___VARIABLE_productName:identifier___ModuleOutputProtocol?
     
     // Configure custom init
     //
     init() {
-        
+        //TODO: - Initialize binding variables here.
     }
+}
+
+//MARK: - ReferralLinkModuleInputProtocol
+//
+extension ___VARIABLE_productName:identifier___ViewModel: ___VARIABLE_productName:identifier___ModuleInputProtocol {
+    
 }
 
 
@@ -34,4 +41,7 @@ fileprivate extension ___VARIABLE_productName:identifier___ViewModel {
 //
 extension ___VARIABLE_productName:identifier___ViewModel: ___VARIABLE_productName:identifier___ViewModelInterface {
     
+    func viewReady() {
+        //TODO: - Place any initializations and network calls here.
+    }
 }

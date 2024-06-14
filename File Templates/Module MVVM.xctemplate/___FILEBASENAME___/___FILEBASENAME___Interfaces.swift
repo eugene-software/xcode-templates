@@ -9,23 +9,31 @@
 //
 
 import Foundation
+import Combine
+
+//MARK: Router - Main Interface
+
+protocol ___VARIABLE_productName:identifier___RouterProtocol: AnyObject {
+    
+}
 
 
-// Uncomment if needed
-//MARK: ___VARIABLE_productName:identifier___ViewModelDelegate - Callback delegate
+//MARK: Module - Inputs and Outputs Interface
 
-//protocol ___VARIABLE_productName:identifier___ViewModelDelegate: class {
-//
-//
-//}
+protocol ___VARIABLE_productName:identifier___ModuleInputProtocol: AnyObject {
+    
+}
+
+protocol ___VARIABLE_productName:identifier___ModuleOutputProtocol: AnyObject {
+    
+}
 
 
 //MARK: ViewModel - Main Interface
 
 protocol ___VARIABLE_productName:identifier___ViewModelInterface {
     
-//    Uncomment if needed
-//    weak var delegate: ___VARIABLE_productName:identifier___ViewModelDelegate?  { get set }
+    func viewReady()
 }
 
 
@@ -34,5 +42,5 @@ protocol ___VARIABLE_productName:identifier___ViewModelInterface {
 protocol ___VARIABLE_productName:identifier___ViewControllerInterface {
     
     var viewModel: ___VARIABLE_productName:identifier___ViewModelInterface!  { get set }
-    func configureWith(_ model: ___VARIABLE_productName:identifier___ViewModelInterface)
+    func bind()
 }

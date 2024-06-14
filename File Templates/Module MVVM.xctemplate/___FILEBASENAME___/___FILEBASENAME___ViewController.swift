@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import Combine
 
 class ___VARIABLE_productName:identifier___ViewController: UIViewController  {
 
@@ -30,35 +31,16 @@ extension ___VARIABLE_productName:identifier___ViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        bind()
+        viewModel.viewReady()
         //
     }
+}
+
+extension ___VARIABLE_productName:identifier___ViewControllerInterface {
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        super.viewWillAppear(animated)
-        //
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        super.viewDidAppear(animated)
-        //
-    }
-    
-    override func viewDidLayoutSubviews() {
-        
-        super.viewDidLayoutSubviews()
-        
-        // Place any view.frame related calculations. In this method view.frame is calculated correctly.
-        //
-    }
-    
-    override func viewWillLayoutSubviews() {
-        
-        super.viewWillLayoutSubviews()
-        
-        // Place any layout invalidation methods here, like collectionView.collectionViewLayout.invalidateLayout()
-        //
+    func bind() {
+        //TODO: - Place viewModel's binding here
     }
 }
 
@@ -81,14 +63,4 @@ fileprivate extension ___VARIABLE_productName:identifier___ViewController {
 
 extension ___VARIABLE_productName:identifier___ViewController: ___VARIABLE_productName:identifier___ViewControllerInterface {
     
-    func configureWith(_ model: ___VARIABLE_productName:identifier___ViewModelInterface) {
-        viewModel = model
-    }
 }
-
-// Uncomment if view model has a delegate based callblack
-//MARK: - ___VARIABLE_productName:identifier___ViewModelDelegate
-
-//extension ___VARIABLE_productName:identifier___ViewController: ___VARIABLE_productName:identifier___ViewModelDelegate {
-//
-//}
