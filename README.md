@@ -1,4 +1,4 @@
-# Reinvently iOS Template
+# Xcode Templates
 
 This tempate allows to quickly start and set-up a new project with required dependencies and built networking, data storage and service layers.
 
